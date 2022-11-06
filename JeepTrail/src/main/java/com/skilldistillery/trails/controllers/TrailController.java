@@ -104,4 +104,9 @@ public class TrailController {
 	public List <Trail> listTrailsByDateCompletedDesc(){
 		return trailSvc.findAllByOrderByDateCompletedDesc();
 	}
+	
+	@GetMapping("trails/search/{keyword}")
+	public List <Trail> listTrailsByKeyWord(@PathVariable String keyword){
+		return trailSvc.findByNameLike(keyword);
+	}
 }

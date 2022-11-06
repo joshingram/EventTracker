@@ -57,7 +57,7 @@ public class TrailServiceImpl implements TrailService {
 	@Override
 	public boolean delete(int trailId) {
 		trailRepo.deleteById(trailId);
-		
+
 		return !trailRepo.existsById(trailId);
 	}
 
@@ -65,7 +65,7 @@ public class TrailServiceImpl implements TrailService {
 	public List<Trail> findAllOrderByHighestElevationAsc() {
 		return trailRepo.findAllByOrderByHighestElevationAsc();
 	}
-	
+
 	@Override
 	public List<Trail> findAllOrderByHighestElevationDesc() {
 		return trailRepo.findAllByOrderByHighestElevationDesc();
@@ -79,6 +79,12 @@ public class TrailServiceImpl implements TrailService {
 	@Override
 	public List<Trail> findAllByOrderByDateCompletedDesc() {
 		return trailRepo.findAllByOrderByDateCompletedDesc();
+	}
+
+	@Override
+	public List<Trail> findByNameLike(String keyword) {
+		keyword = "%" + keyword + "%";
+		return trailRepo.findByNameLike(keyword);
 	}
 
 }

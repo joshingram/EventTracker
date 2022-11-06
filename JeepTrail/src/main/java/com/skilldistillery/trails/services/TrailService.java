@@ -23,5 +23,7 @@ public interface TrailService {
 	List <Trail> findAllByOrderByDateCompletedAsc();
 	
 	List <Trail> findAllByOrderByDateCompletedDesc();
+	
+	List <Trail> findByNameLike(String keyword);
 
 }
