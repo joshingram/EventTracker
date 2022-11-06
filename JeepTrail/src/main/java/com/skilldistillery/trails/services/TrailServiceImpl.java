@@ -80,11 +80,22 @@ public class TrailServiceImpl implements TrailService {
 	public List<Trail> findAllByOrderByDateCompletedDesc() {
 		return trailRepo.findAllByOrderByDateCompletedDesc();
 	}
+	
+	@Override
+	public List<Trail> findAllByOrderByLengthAsc() {
+		return trailRepo.findAllByOrderByLengthAsc();
+	}
+	
+	@Override
+	public List<Trail> findAllByOrderByLengthDesc() {
+		return trailRepo.findAllByOrderByLengthDesc();
+	}
 
 	@Override
 	public List<Trail> findByNameLike(String keyword) {
 		keyword = "%" + keyword + "%";
 		return trailRepo.findByNameLike(keyword);
 	}
+
 
 }

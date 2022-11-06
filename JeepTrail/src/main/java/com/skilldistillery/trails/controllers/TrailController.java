@@ -84,26 +84,60 @@ public class TrailController {
 			res.setStatus(400);
 		}
 	}
+	// Two options for sort/order. Both options work.  
+	// Option 1:
+//	@GetMapping("trails/sort/elev/asc")
+//	public List<Trail> listTrailsByHighestElevation() {
+//		return trailSvc.findAllOrderByHighestElevationAsc();
+//	}
+//	
+//	@GetMapping("trails/sort/elev/desc")
+//	public List<Trail> listTrailsByHighestElevationDesc() {
+//		return trailSvc.findAllOrderByHighestElevationDesc();
+//	}
+//	
+//	@GetMapping("trails/sort/date/asc")
+//	public List <Trail> listTrailsByDateCompletedAsc(){
+//		return trailSvc.findAllByOrderByDateCompletedAsc();
+//	}
+//	
+//	@GetMapping("trails/sort/date/desc")
+//	public List <Trail> listTrailsByDateCompletedDesc(){
+//		return trailSvc.findAllByOrderByDateCompletedDesc();
+//	}
 	
-	@GetMapping("trails/sort/elev/asc")
-	public List<Trail> listTrailsByHighestElevation() {
-		return trailSvc.findAllOrderByHighestElevationAsc();
+	//Option 2:
+	@GetMapping("trails/sort/{field}/{order}")
+	public List<Trail> listTrailsByFieldSort(@PathVariable String field, @PathVariable String order, HttpServletResponse res) {
+		if (field.equals("elev")) {
+			if (order.equals("asc")) {
+				return trailSvc.findAllOrderByHighestElevationAsc();
+			} else if (order.equals("desc")){
+				return trailSvc.findAllOrderByHighestElevationDesc();
+			} else 
+				res.setStatus(400);
+				return null;
+		} else if (field.equals("date")) {
+			if (order.equals("asc")) {
+				return trailSvc.findAllByOrderByDateCompletedAsc();
+			} else if (order.equals("desc")){
+				return trailSvc.findAllByOrderByDateCompletedDesc();
+			} else 
+				res.setStatus(400);
+				return null;
+		} else if (field.equals("length")) {
+			if (order.equals("asc")) {
+				return trailSvc.findAllByOrderByLengthAsc();
+			} else if (order.equals("desc")){
+				return trailSvc.findAllByOrderByLengthDesc();
+			} else 
+				res.setStatus(400);
+				return null;		
+		} else
+			res.setStatus(400);
+			return null;
 	}
-	
-	@GetMapping("trails/sort/elev/desc")
-	public List<Trail> listTrailsByHighestElevationDesc() {
-		return trailSvc.findAllOrderByHighestElevationDesc();
-	}
-	
-	@GetMapping("trails/sort/date/asc")
-	public List <Trail> listTrailsByDateCompletedAsc(){
-		return trailSvc.findAllByOrderByDateCompletedAsc();
-	}
-	
-	@GetMapping("trails/sort/date/desc")
-	public List <Trail> listTrailsByDateCompletedDesc(){
-		return trailSvc.findAllByOrderByDateCompletedDesc();
-	}
+
 	
 	@GetMapping("trails/search/{keyword}")
 	public List <Trail> listTrailsByKeyWord(@PathVariable String keyword){

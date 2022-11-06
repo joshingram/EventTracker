@@ -18,5 +18,9 @@ public interface TrailRepository extends JpaRepository<Trail, Integer> {
 	
 	List <Trail> findAllByOrderByDateCompletedDesc();
 	
+	List <Trail> findAllByOrderByLengthAsc();
+	
+	List <Trail> findAllByOrderByLengthDesc();
+	
 	List <Trail> findByNameLike(String keyword1);
 }
