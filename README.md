@@ -6,7 +6,9 @@ This is a backend only for an application that allows a user to track each trip/
 ### Stretch Goals Implemented:
 The Controller contains logic which anticipates many possible errors and will display a corresponding status code (400, 404, etc) as well as setting more specific codes (204, etc) for successful operations.  Potential errors include giving bad data (missing a non-nullable field) or attempting to modify a record that does not exist.  Postman tests include tests for bad data and data id numbers.
 
-Users can sort the list of all trails by Highest Elevation (either ascending or descending order).
+Users can sort the list of all trails by Highest Elevation (in either ascending or descending order).
+
+Users can sort the list of all trails by Date Completed (in either ascending or descending order).
 
 ### How to Access:
 | CRUD Op. | HTTP Verb | URI                         | Request Body | Response Body |
@@ -18,6 +20,8 @@ Users can sort the list of all trails by Highest Elevation (either ascending or 
 | Delete   | DELETE    | `/api/trails/{trailId}`     |              | |
 | Read     | GET       | `/api/trails/sort/elev/asc` |              | List of trails sorted by ascending elevation|
 | Read     | GET       | `/api/trails/sort/elev/desc`|              | List of trails sorted by descending elevation|
+| Read     | GET       | `/api/trails/sort/date/asc` |              | List of trails sorted by ascending date completed|
+| Read     | GET       | `/api/trails/sort/date/desc`|              | List of trails sorted by descending date completed|
 
 ## Lessons Learned:
 
