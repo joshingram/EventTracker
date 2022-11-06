@@ -14,4 +14,5 @@ public interface TrailRepository extends JpaRepository<Trail, Integer> {
 	
 	List <Trail> findAllByOrderByHighestElevationDesc();
 
+	List <Trail> findAllByOrderByDateCompletedAsc();
 }

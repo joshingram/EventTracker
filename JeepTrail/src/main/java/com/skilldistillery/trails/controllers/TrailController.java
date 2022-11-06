@@ -94,4 +94,9 @@ public class TrailController {
 	public List<Trail> listTrailsByHighestElevationDesc() {
 		return trailSvc.findAllOrderByHighestElevationDesc();
 	}
+	
+	@GetMapping("trails/sort/date/asc")
+	public List <Trail> listTrailsByDateCompletedAsc(){
+		return trailSvc.findAllByOrderByDateCompletedAsc();
+	}
 }
