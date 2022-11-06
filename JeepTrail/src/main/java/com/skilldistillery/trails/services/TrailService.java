@@ -21,5 +21,7 @@ public interface TrailService {
 	List <Trail> findAllOrderByHighestElevationDesc();
 	
 	List <Trail> findAllByOrderByDateCompletedAsc();
+	
+	List <Trail> findAllByOrderByDateCompletedDesc();
 
 }

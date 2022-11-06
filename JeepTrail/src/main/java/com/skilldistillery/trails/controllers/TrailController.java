@@ -99,4 +99,9 @@ public class TrailController {
 	public List <Trail> listTrailsByDateCompletedAsc(){
 		return trailSvc.findAllByOrderByDateCompletedAsc();
 	}
+	
+	@GetMapping("trails/sort/date/desc")
+	public List <Trail> listTrailsByDateCompletedDesc(){
+		return trailSvc.findAllByOrderByDateCompletedDesc();
+	}
 }

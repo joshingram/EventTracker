@@ -76,4 +76,9 @@ public class TrailServiceImpl implements TrailService {
 		return trailRepo.findAllByOrderByDateCompletedAsc();
 	}
 
+	@Override
+	public List<Trail> findAllByOrderByDateCompletedDesc() {
+		return trailRepo.findAllByOrderByDateCompletedDesc();
+	}
+
 }
