@@ -1,7 +1,18 @@
 # Event Tracker Project
 
 ## Description:
-This is a backend only for an application that allows a user to track each trip/trail they take with their 4x4 vehicle.  A user can enter the date they completed the trip along with data such as the trail's name, the highest elevation they saw, the coordinates for the trailhead, and an image (url).  
+This is a backend only for an application that allows a user to track each trip/trail they take with their 4x4 vehicle.  Users can:
+- view lists of all trails
+- view a specific trail
+- create a trail
+- update a trail
+- delete a trail
+Information about a trail event includes:
+- date the trip was completed
+- trail's name
+- highest elevation seen
+- coordinates for the trailhead
+- an image (url)  
 
 ### Stretch Goals Implemented:
 The Controller contains logic which anticipates many possible errors and will display a corresponding status code (400, 404, etc) as well as setting more specific codes (204, etc) for successful operations.  Potential errors include giving bad data (missing a non-nullable field) or attempting to modify a record that does not exist.  Postman tests include tests for bad data and data id numbers.
@@ -18,10 +29,10 @@ Users can sort the list of all trails by Date Completed (in either ascending or 
 | Create   | POST      | `/api/trails`               | JSON for new trail| JSON of created trail |
 | Update   | PUT       | `/api/trails/{trailId}`     | JSON to update trail | JSON of updated trail |
 | Delete   | DELETE    | `/api/trails/{trailId}`     |              | |
-| Read     | GET       | `/api/trails/sort/elev/asc` |              | List of trails sorted by ascending elevation|
-| Read     | GET       | `/api/trails/sort/elev/desc`|              | List of trails sorted by descending elevation|
-| Read     | GET       | `/api/trails/sort/date/asc` |              | List of trails sorted by ascending date completed|
-| Read     | GET       | `/api/trails/sort/date/desc`|              | List of trails sorted by descending date completed|
+| Read     | GET       | `/api/trails/sort/elev/asc` |              | List of trails sorted by elevation (ascending order)|
+| Read     | GET       | `/api/trails/sort/elev/desc`|              | List of trails sorted by elevation (descending order)|
+| Read     | GET       | `/api/trails/sort/date/asc` |              | List of trails sorted by date completed (ascending order)|
+| Read     | GET       | `/api/trails/sort/date/desc`|              | List of trails sorted by date completed (descending order)|
 
 ## Lessons Learned:
 
