@@ -49,9 +49,8 @@ public class TrailController {
 			String url = urlSb.toString();
 			res.setHeader("Location", url);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			res.setStatus(409);
+			res.setStatus(400);
 			trail = null;
 		}
 		return trail;
@@ -81,7 +80,6 @@ public class TrailController {
 				res.setStatus(404);
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			res.setStatus(400);
 		}
