@@ -7,6 +7,7 @@ This is a backend only for an application that allows a user to track each trip/
 - create a trail
 - update a trail
 - delete a trail
+
 Information about a trail event includes:
 - date the trip was completed
 - trail's name
