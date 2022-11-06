@@ -9,5 +9,7 @@ import com.skilldistillery.trails.entities.Trail;
 public interface TrailRepository extends JpaRepository<Trail, Integer> {
 	
 	Trail findById(int id);
+	
+	List <Trail> findAllByOrderByHighestElevation();
 
 }

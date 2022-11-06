@@ -84,4 +84,9 @@ public class TrailController {
 			res.setStatus(400);
 		}
 	}
+	
+	@GetMapping("trails/sort")
+	public List<Trail> listTrailsByHighestElevation() {
+		return trailSvc.findAllOrderByHighestElevation();
+	}
 }
