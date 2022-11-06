@@ -10,6 +10,8 @@ public interface TrailRepository extends JpaRepository<Trail, Integer> {
 	
 	Trail findById(int id);
 	
-	List <Trail> findAllByOrderByHighestElevation();
+	List <Trail> findAllByOrderByHighestElevationAsc();
+	
+	List <Trail> findAllByOrderByHighestElevationDesc();
 
 }

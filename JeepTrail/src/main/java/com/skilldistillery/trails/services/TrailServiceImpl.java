@@ -62,9 +62,13 @@ public class TrailServiceImpl implements TrailService {
 	}
 
 	@Override
-	public List<Trail> findAllOrderByHighestElevation() {
-		return trailRepo.findAllByOrderByHighestElevation();
+	public List<Trail> findAllOrderByHighestElevationAsc() {
+		return trailRepo.findAllByOrderByHighestElevationAsc();
+	}
 	
+	@Override
+	public List<Trail> findAllOrderByHighestElevationDesc() {
+		return trailRepo.findAllByOrderByHighestElevationDesc();
 	}
 
 }

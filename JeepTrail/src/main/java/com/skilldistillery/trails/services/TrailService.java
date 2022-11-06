@@ -16,6 +16,8 @@ public interface TrailService {
 	
 	boolean delete(int trailId);
 	
-	List <Trail> findAllOrderByHighestElevation();
+	List <Trail> findAllOrderByHighestElevationAsc();
+	
+	List <Trail> findAllOrderByHighestElevationDesc();
 
 }

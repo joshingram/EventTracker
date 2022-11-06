@@ -85,8 +85,13 @@ public class TrailController {
 		}
 	}
 	
-	@GetMapping("trails/sort")
+	@GetMapping("trails/sort/elev/asc")
 	public List<Trail> listTrailsByHighestElevation() {
-		return trailSvc.findAllOrderByHighestElevation();
+		return trailSvc.findAllOrderByHighestElevationAsc();
+	}
+	
+	@GetMapping("trails/sort/elev/desc")
+	public List<Trail> listTrailsByHighestElevationDesc() {
+		return trailSvc.findAllOrderByHighestElevationDesc();
 	}
 }
