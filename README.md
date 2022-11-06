@@ -16,6 +16,8 @@ Information about a trail event includes:
 - coordinates for the trailhead
 - an image (url)  
 
+Of note, there is currently no reason that this could not be used for other trail types/uses such as mountain bikers, hikers, trail runners, and/or horseback riders.
+
 ### Stretch Goals Implemented:
 - The Controller contains logic which anticipates many possible errors and will display a corresponding status code (400, 404, etc) as well as setting more specific codes (204, etc) for successful operations.  Potential errors include giving bad data (missing a non-nullable field) or attempting to modify a record that does not exist.  Postman tests include tests for bad data and bad id numbers.
 
@@ -23,7 +25,7 @@ Information about a trail event includes:
 1. sort the list of all trails by Highest Elevation (in either ascending or descending order)
 2. sort the list of all trails by Date Completed (in either ascending or descending order)
 3. sort the list of all trails by Length (in either ascending or descending order)
-4. search for trails whose name contains a keyword
+4. search for trails whose Name or Notes contains a keyword
 
 ### REST route URIs and HTTP methods:
 | CRUD Op. | HTTP Verb | URI                         | Request Body | Response Body |
@@ -39,7 +41,7 @@ Information about a trail event includes:
 | Read     | GET       | `/api/trails/sort/date/desc`|              | List of trails sorted by date completed (descending order)|
 | Read     | GET       | `/api/trails/sort/length/asc` |              | List of trails sorted by length (ascending order)|
 | Read     | GET       | `/api/trails/sort/length/desc`|              | List of trails sorted by length (descending order)|
-| Read     | GET       | `/api/trails/search/{keyword}`|              | List of trails whose name contains the keyword|
+| Read     | GET       | `/api/trails/search/{keyword}`|              | List of trails whose name or notes contains the keyword|
 
 ## Lessons Learned:
 This being my first REST project, I learned about `@RestController` and `@PutMapping` / `@DeleteMapping`.  I also learned about using `@RequestMapping('blah')` to shorten all of the other `@xyzMapping` paths.

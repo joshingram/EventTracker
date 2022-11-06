@@ -28,6 +28,6 @@ public interface TrailService {
 	
 	List <Trail> findAllByOrderByLengthDesc();
 	
-	List <Trail> findByNameLike(String keyword);
+	List <Trail> findByNameLikeOrNotesLike(String keyword);
 
 }

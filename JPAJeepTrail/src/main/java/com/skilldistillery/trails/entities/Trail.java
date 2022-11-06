@@ -35,6 +35,8 @@ public class Trail {
 	@Column(name="highest_elevation")
 	private Double highestElevation;
 	
+	private String notes;
+	
 
 	// METHODS
 
@@ -105,6 +107,14 @@ public class Trail {
 		this.highestElevation = highestElevation;
 	}
 
+	public String getNotes() {
+		return notes;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -126,7 +136,7 @@ public class Trail {
 	public String toString() {
 		return "Trail [id=" + id + ", name=" + name + ", length=" + length + ", dateCompleted=" + dateCompleted
 				+ ", imageUrl=" + imageUrl + ", entranceLatitude=" + entranceLatitude + ", entranceLongitude="
-				+ entranceLongitude + ", highestElevation=" + highestElevation + "]";
+				+ entranceLongitude + ", highestElevation=" + highestElevation + ", notes=" + notes + "]";
 	}
 
 }

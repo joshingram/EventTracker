@@ -92,9 +92,9 @@ public class TrailServiceImpl implements TrailService {
 	}
 
 	@Override
-	public List<Trail> findByNameLike(String keyword) {
+	public List<Trail> findByNameLikeOrNotesLike(String keyword) {
 		keyword = "%" + keyword + "%";
-		return trailRepo.findByNameLike(keyword);
+		return trailRepo.findByNameLikeOrNotesLike(keyword, keyword);
 	}
 
 

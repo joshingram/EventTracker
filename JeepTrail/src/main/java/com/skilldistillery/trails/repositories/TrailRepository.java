@@ -22,5 +22,5 @@ public interface TrailRepository extends JpaRepository<Trail, Integer> {
 	
 	List <Trail> findAllByOrderByLengthDesc();
 	
-	List <Trail> findByNameLike(String keyword1);
+	List <Trail> findByNameLikeOrNotesLike(String keyword1, String keyword2);
 }

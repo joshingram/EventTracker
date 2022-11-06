@@ -141,6 +141,6 @@ public class TrailController {
 	
 	@GetMapping("trails/search/{keyword}")
 	public List <Trail> listTrailsByKeyWord(@PathVariable String keyword){
-		return trailSvc.findByNameLike(keyword);
+		return trailSvc.findByNameLikeOrNotesLike(keyword);
 	}
 }
