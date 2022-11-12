@@ -55,8 +55,9 @@ function displayTrailList(trails) {
 	
 	let totalDist = 0;
 	for (let trail of trails) {
+		if (!isNaN(parseInt(trail.length))){
 		let distance = parseInt(trail.length);
-		totalDist += distance;
+		totalDist += distance;}
 	}
 	let aggDiv = document.getElementById("aggregator")
 	aggDiv.textContent = "";
@@ -325,8 +326,6 @@ function deleteTrail(trailId) {
 				listDiv.style.display = 'block';
 				createDiv.style.display = 'block';
 				trailDiv.style.display = 'none';
-				
-				console.log("should have loadedTrailList")
 			} else {
 				console.error("Failed to delete Trail event");
 				console.error(xhr.status + " : " + xhr.responseText);
