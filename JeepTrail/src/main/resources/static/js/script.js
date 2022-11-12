@@ -282,23 +282,17 @@ function deleteTrail(trailId){
 	let xhr = new XMLHttpRequest();
 	xhr.open('DELETE', `/api/trails/` + trailId);
 
-	xhr.setRequestHeader("Content-type", "application/json");
-
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
-			if (xhr.status === 200 || xhr.status === 201 || xhr.status === 204) {
-				let trail = JSON.parse(xhr.responseText);
-				let trailData = document.getElementById('trailData');
-				TrailData.textContent = '';
+			if ( xhr.status === 204) {
 				getTrail();
 			} else {
-				console.error("Failed to update Trail event");
+				console.error("Failed to delete Trail event");
 				console.error(xhr.status + " : " + xhr.responseText);
 			}
 		}
 		}
-	let trailJson = JSON.stringify(trail);
-	xhr.send(trailJson);
+	xhr.send();
 
 }
 
