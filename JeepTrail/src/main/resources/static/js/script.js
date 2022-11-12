@@ -1,41 +1,41 @@
-window.addEventListener('load', function(){
+window.addEventListener('load', function() {
 	console.log('script.js is loaded');
-	
+
 	init();
 });
 
-function init(){
+function init() {
 	loadTrailList();
-	
-	document.createTrail.submit.addEventListener('click', function(e){
-  e.preventDefault();
-  
-  let trail = {
-	  name: createTrail.name.value,
-	  length: createTrail.length.value,
-	  dateCompleted: createTrail.dateCompleted.value,
-	  imageUrl: createTrail.imageUrl.value,
-	  highestElevation: createTrail.highestElevation.value,
-	  notes: createTrail.notes.value
-	  };
-	  
-	  addTrail(trail);
-	  })
+
+	document.createTrail.submit.addEventListener('click', function(e) {
+		e.preventDefault();
+
+		let trail = {
+			name: createTrail.name.value,
+			length: createTrail.length.value,
+			dateCompleted: createTrail.dateCompleted.value,
+			imageUrl: createTrail.imageUrl.value,
+			highestElevation: createTrail.highestElevation.value,
+			notes: createTrail.notes.value
+		};
+
+		addTrail(trail);
+	})
 }
 
-function loadTrailList(){
+function loadTrailList() {
 	let xhr = new XMLHttpRequest();
 	xhr.open('GET', 'api/trails');
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 200 || xhr.status === 201) {
-				
+
 				let trailList = xhr.responseText;
-				console.log(trailList);  //TESTING 
+				
 				let trails = JSON.parse(trailList);
 				displayTrailList(trails);
 			}
-				else if (xhr.status === 404) {
+			else if (xhr.status === 404) {
 				displayError("Trails not found");
 			}
 			else {
@@ -46,40 +46,42 @@ function loadTrailList(){
 	xhr.send();
 }
 
-function displayTrailList(trails){
+function displayTrailList(trails) {
 	let updateDiv = document.getElementById("updateTrailDiv");
 	let tbody = document.getElementById("trailTableBody");
 	let trailListDiv = document.getElementById("trailListDiv");
 	
 	let totalDist = 0;
-	for (let trail of trails){
+	for (let trail of trails) {
 		let distance = parseInt(trail.length);
-		totalDist += distance;	
+		totalDist += distance;
 	}
+	let aggDiv = document.getElementById("aggregator")
+	aggDiv.textContent = "";
 	let totalD = document.createElement('h2');
 	totalD.textContent = "Total trail miles: " + totalDist;
-	trailListDiv.appendChild(totalD);
-	
-	
-	
+	aggDiv.appendChild(totalD);
+
+
+
 	tbody.textContent = "";
-	if(trails && Array.isArray(trails) && trails.length > 0){
-		for (let trail of trails){
-		
+	if (trails && Array.isArray(trails) && trails.length > 0) {
+		for (let trail of trails) {
+
 			let tr = document.createElement('tr');
 			let td = document.createElement('td');
-			
+
 			td.textContent = trail.id;
 			tr.appendChild(td);
-			
+
 			td = document.createElement('td');
-			
+
 			td.textContent = trail.name;
 			tr.appendChild(td);
 			tbody.appendChild(tr);
-			
-			
-			tr.addEventListener('click', function(evt){
+
+
+			tr.addEventListener('click', function(evt) {
 				getTrail(trail.id);
 			})
 		}
@@ -87,19 +89,19 @@ function displayTrailList(trails){
 	updateDiv.style.display = 'none';
 }
 
-function getTrail(trailId){
+function getTrail(trailId) {
 	let xhr = new XMLHttpRequest();
 	xhr.open('GET', 'api/trails/' + trailId);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 200 || xhr.status === 201) {
-				
+
 				let trailData = xhr.responseText;
-				console.log(trailData);  //TESTING 
+			
 				let trail = JSON.parse(trailData);
 				displayTrail(trail);
 			}
-				else if (xhr.status === 404) {
+			else if (xhr.status === 404) {
 				displayError("Trail not found");
 			}
 			else {
@@ -110,108 +112,108 @@ function getTrail(trailId){
 	xhr.send();
 }
 
-function displayTrail(trail){
+function displayTrail(trail) {
 	let createDiv = document.getElementById("createTrailDiv");
 	let updateDiv = document.getElementById("updateTrailDiv");
 	let listDiv = document.getElementById('trailListDiv');
 	listDiv.style.display = 'none';
-	
+
 	let trailDiv = document.getElementById('trailDetailsDiv');
 	trailDiv.textContent = '';
 	trailDiv.style.display = 'block';
-	
+
 	let h4 = document.createElement('h4');
 	h4.textContent = "Name: " + trail.name;
 	trailDiv.appendChild(h4);
-	
+
 	h4 = document.createElement('h4');
 	h4.textContent = "Length: " + trail.length;
 	trailDiv.appendChild(h4);
-	
+
 	h4 = document.createElement('h4');
 	h4.textContent = "Date completed: " + trail.dateCompleted;
 	trailDiv.appendChild(h4);
-	
+
 	h4 = document.createElement('h4');
 	h4.textContent = "Highest Elevation: " + trail.highestElevation;
 	trailDiv.appendChild(h4);
-	
+
 	h4 = document.createElement('h4');
 	h4.textContent = "Notes: " + trail.notes;
 	trailDiv.appendChild(h4);
-	
-	if (trail.imageUrl){
+
+	if (trail.imageUrl) {
 		img = document.createElement('img');
 		img.id = "trailImage";
 		img.src = trail.imageUrl;
 		trailDiv.appendChild(img);
-		}
-		
+	}
+
 	createDiv.style.display = 'none';
 	updateDiv.style.display = 'none';
-		
-	let deleteButton = document.createElement('button')	
+
+	let deleteButton = document.createElement('button')
 	deleteButton.textContent = "Delete this trail";
 	trailDiv.appendChild(deleteButton);
-	deleteButton.addEventListener('click', function(){
-		
+	deleteButton.addEventListener('click', function() {
+
 		var confirmDelete;
-			if (confirm("Are you sure you want to delete this trail?") == true) {
-   			 confirmDelete = "Trail deleted!";
-   			 deleteTrail(trail.id)
-			} else {
-    		 confirmDelete = "Delete Cancelled!";
-			}
-		
+		if (confirm("Are you sure you want to delete this trail?") == true) {
+			confirmDelete = "Trail deleted!";
+			deleteTrail(trail.id)
+		} else {
+			confirmDelete = "Delete Cancelled!";
+		}
+
 	})
-	
-	let updateButton = document.createElement('button')	
+
+	let updateButton = document.createElement('button')
 	updateButton.textContent = "Update this trail";
 	trailDiv.appendChild(updateButton);
-	updateButton.addEventListener('click', function(){
+	updateButton.addEventListener('click', function() {
 		updateDiv.style.display = 'block';
-		updateTrail(trail.id);
+		createUpdateTrailForm(trail.id);
 		updateButton.disabled = "disabled";
 	})
-	
+
 	let backButton = document.createElement('button');
 	backButton.textContent = "Back to List";
 	trailDiv.appendChild(backButton);
-	backButton.addEventListener('click', function(){
-		$('#listDiv').load("#listDiv > *");  //weird J query stuff from the internet
+	backButton.addEventListener('click', function() {
 		listDiv.style.display = 'block';
 		trailDiv.style.display = 'none';
 		createDiv.style.display = 'block';
 		updateDiv.style.display = 'none';
+		loadTrailList() 
 	})
-	
+
 }
 
-function addTrail(trail)  {
+function addTrail(trail) {
 	let xhr = new XMLHttpRequest();
-	xhr.open('POST', `api/trails`);  
-	
-	xhr.setRequestHeader("Content-type", "application/json");	
-	
-	xhr.onreadystatechange = function(){
+	xhr.open('POST', `api/trails`);
+
+	xhr.setRequestHeader("Content-type", "application/json");
+
+	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 200 || xhr.status === 201) {
 				let trail = JSON.parse(xhr.responseText);
 				displayTrail(trail);
-				}else {
-					console.error("Failed to create trail");
-					console.error(xhr.status + " : " + xhr.responseText);
-				}
+			} else {
+				console.error("Failed to create trail");
+				console.error(xhr.status + " : " + xhr.responseText);
+			}
 		}
 	}
-	
+
 	let trailJson = JSON.stringify(trail);
 	xhr.send(trailJson);
- }
- 
- function updateTrail(trailId) {
+}
+
+function createUpdateTrailForm(trailId) {
 	let trailData = document.getElementById('updateTrailDiv');
-	trailData.textContent = ''; 
+	trailData.textContent = '';
 	let xhr = new XMLHttpRequest();
 	xhr.open('GET', '/api/trails/' + trailId);
 	xhr.onreadystatechange = function() {
@@ -220,8 +222,8 @@ function addTrail(trail)  {
 				let trailJson = xhr.responseText;
 				//console.log(trailJson);  //TESTING 
 				let trail = JSON.parse(trailJson);
-				
-				
+
+
 				let form = document.createElement('form');
 				form.name = 'updateTrailForm';
 				trailData.appendChild(form);
@@ -270,7 +272,7 @@ function addTrail(trail)  {
 						imageUrl: imageUrl.value,
 						highestElevation: highestElevation.value,
 						notes: notes.value,
-						
+
 					}
 					updateTrailSubmit(newTrail);
 				})
@@ -307,20 +309,20 @@ function updateTrailSubmit(trail) {
 
 }
 
-function deleteTrail(trailId){
+function deleteTrail(trailId) {
 	let xhr = new XMLHttpRequest();
 	xhr.open('DELETE', `/api/trails/` + trailId);
 
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
-			if ( xhr.status === 204) {
+			if (xhr.status === 204) {
 				getTrail();
 			} else {
 				console.error("Failed to delete Trail event");
 				console.error(xhr.status + " : " + xhr.responseText);
 			}
 		}
-		}
+	}
 	xhr.send();
 
 }
