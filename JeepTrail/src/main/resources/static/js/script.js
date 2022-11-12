@@ -120,25 +120,25 @@ function displayTrail(trail){
 	trailDiv.textContent = '';
 	trailDiv.style.display = 'block';
 	
-	let h2 = document.createElement('h2');
-	h2.textContent = "Name: " + trail.name;
-	trailDiv.appendChild(h2);
+	let h4 = document.createElement('h4');
+	h4.textContent = "Name: " + trail.name;
+	trailDiv.appendChild(h4);
 	
-	h2 = document.createElement('h2');
-	h2.textContent = "Length: " + trail.length;
-	trailDiv.appendChild(h2);
+	h4 = document.createElement('h4');
+	h4.textContent = "Length: " + trail.length;
+	trailDiv.appendChild(h4);
 	
-	h2 = document.createElement('h2');
-	h2.textContent = "Date completed: " + trail.dateCompleted;
-	trailDiv.appendChild(h2);
+	h4 = document.createElement('h4');
+	h4.textContent = "Date completed: " + trail.dateCompleted;
+	trailDiv.appendChild(h4);
 	
-	h2 = document.createElement('h2');
-	h2.textContent = "Highest Elevation: " + trail.highestElevation;
-	trailDiv.appendChild(h2);
+	h4 = document.createElement('h4');
+	h4.textContent = "Highest Elevation: " + trail.highestElevation;
+	trailDiv.appendChild(h4);
 	
-	h2 = document.createElement('h2');
-	h2.textContent = "Notes: " + trail.notes;
-	trailDiv.appendChild(h2);
+	h4 = document.createElement('h4');
+	h4.textContent = "Notes: " + trail.notes;
+	trailDiv.appendChild(h4);
 	
 	if (trail.imageUrl){
 		img = document.createElement('img');
@@ -154,7 +154,15 @@ function displayTrail(trail){
 	deleteButton.textContent = "Delete this trail";
 	trailDiv.appendChild(deleteButton);
 	deleteButton.addEventListener('click', function(){
-		deleteTrail(trail.id)
+		
+		var confirmDelete;
+			if (confirm("Are you sure you want to delete this trail?") == true) {
+   			 confirmDelete = "Trail deleted!";
+   			 deleteTrail(trail.id)
+			} else {
+    		 confirmDelete = "Delete Cancelled!";
+			}
+		
 	})
 	
 	let updateButton = document.createElement('button')	
@@ -170,6 +178,7 @@ function displayTrail(trail){
 	backButton.textContent = "Back to List";
 	trailDiv.appendChild(backButton);
 	backButton.addEventListener('click', function(){
+		$('#listDiv').load("#listDiv > *");  //weird J query stuff from the internet
 		listDiv.style.display = 'block';
 		trailDiv.style.display = 'none';
 		createDiv.style.display = 'block';
@@ -209,7 +218,7 @@ function addTrail(trail)  {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 200) {
 				let trailJson = xhr.responseText;
-				console.log(trailJson);  //TESTING 
+				//console.log(trailJson);  //TESTING 
 				let trail = JSON.parse(trailJson);
 				
 				
@@ -284,8 +293,9 @@ function updateTrailSubmit(trail) {
 			if (xhr.status === 200 || xhr.status === 201) {
 				let trail = JSON.parse(xhr.responseText);
 				let trailData = document.getElementById('trailData');
-				TrailData.textContent = '';
-				getTrail();
+				//TrailData.textContent = '';
+				//getTrail();
+				displayTrail(trail);
 			} else {
 				console.error("Failed to update Trail event");
 				console.error(xhr.status + " : " + xhr.responseText);

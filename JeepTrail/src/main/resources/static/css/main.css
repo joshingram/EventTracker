@@ -1,7 +1,8 @@
 @charset "UTF-8";
 
 body {
-	background-color: lightgray;
+	 /* color : orange; */
+	 background-image: url("https://img.freepik.com/free-vector/banner-template-with-topography-contour-design_1048-12174.jpg?w=1480&t=st=1668275638~exp=1668276238~hmac=8348c8002c3c685be178811b5a995728305443b7a4d553ca37037b4619faf243");
 }
 
 #trailImage {
