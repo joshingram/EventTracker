@@ -5,8 +5,6 @@ window.addEventListener('load', function(){
 });
 
 function init(){
-	//TODO setup event listeners
-	//TODO load initial data
 	loadTrailList();
 	
 	document.createTrail.submit.addEventListener('click', function(e){
@@ -26,7 +24,6 @@ function init(){
 }
 
 function loadTrailList(){
-	//TODO XHR to get the list
 	let xhr = new XMLHttpRequest();
 	xhr.open('GET', 'api/trails');
 	xhr.onreadystatechange = function() {
@@ -91,7 +88,6 @@ function displayTrailList(trails){
 }
 
 function getTrail(trailId){
-	//TODO XHR to get the list
 	let xhr = new XMLHttpRequest();
 	xhr.open('GET', 'api/trails/' + trailId);
 	xhr.onreadystatechange = function() {
@@ -146,21 +142,29 @@ function displayTrail(trail){
 	
 	if (trail.imageUrl){
 		img = document.createElement('img');
+		img.id = "trailImage";
 		img.src = trail.imageUrl;
 		trailDiv.appendChild(img);
-		console.log(trail.imageUrl)}
+		}
+		
+	createDiv.style.display = 'none';
+	updateDiv.style.display = 'none';
 		
 	let deleteButton = document.createElement('button')	
 	deleteButton.textContent = "Delete this trail";
 	trailDiv.appendChild(deleteButton);
 	deleteButton.addEventListener('click', function(){
 		deleteTrail(trail.id)
-		})
+	})
 	
-	createDiv.style.display = 'none';
-	updateDiv.style.display = 'block';
-	
-	updateTrail(trail.id)
+	let updateButton = document.createElement('button')	
+	updateButton.textContent = "Update this trail";
+	trailDiv.appendChild(updateButton);
+	updateButton.addEventListener('click', function(){
+		updateDiv.style.display = 'block';
+		updateTrail(trail.id);
+		updateButton.disabled = "disabled";
+	})
 	
 	let backButton = document.createElement('button');
 	backButton.textContent = "Back to List";
@@ -197,6 +201,8 @@ function addTrail(trail)  {
  }
  
  function updateTrail(trailId) {
+	let trailData = document.getElementById('updateTrailDiv');
+	trailData.textContent = ''; 
 	let xhr = new XMLHttpRequest();
 	xhr.open('GET', '/api/trails/' + trailId);
 	xhr.onreadystatechange = function() {
@@ -206,7 +212,7 @@ function addTrail(trail)  {
 				console.log(trailJson);  //TESTING 
 				let trail = JSON.parse(trailJson);
 				
-				let trailData = document.getElementById('updateTrailDiv');
+				
 				let form = document.createElement('form');
 				form.name = 'updateTrailForm';
 				trailData.appendChild(form);
