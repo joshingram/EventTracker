@@ -52,6 +52,19 @@ function loadTrailList(){
 function displayTrailList(trails){
 	let updateDiv = document.getElementById("updateTrailDiv");
 	let tbody = document.getElementById("trailTableBody");
+	let trailListDiv = document.getElementById("trailListDiv");
+	
+	let totalDist = 0;
+	for (let trail of trails){
+		let distance = parseInt(trail.length);
+		totalDist += distance;	
+	}
+	let totalD = document.createElement('h2');
+	totalD.textContent = "Total trail miles: " + totalDist;
+	trailListDiv.appendChild(totalD);
+	
+	
+	
 	tbody.textContent = "";
 	if(trails && Array.isArray(trails) && trails.length > 0){
 		for (let trail of trails){
