@@ -34,6 +34,7 @@ function loadTrailList() {
 				
 				let trails = JSON.parse(trailList);
 				displayTrailList(trails);
+				console.log("line 37, in loadTrailList func" + trails)
 			}
 			else if (xhr.status === 404) {
 				displayError("Trails not found");
@@ -50,6 +51,7 @@ function displayTrailList(trails) {
 	let updateDiv = document.getElementById("updateTrailDiv");
 	let tbody = document.getElementById("trailTableBody");
 	let trailListDiv = document.getElementById("trailListDiv");
+	
 	
 	let totalDist = 0;
 	for (let trail of trails) {
@@ -161,6 +163,7 @@ function displayTrail(trail) {
 		if (confirm("Are you sure you want to delete this trail?") == true) {
 			confirmDelete = "Trail deleted!";
 			deleteTrail(trail.id)
+			
 		} else {
 			confirmDelete = "Delete Cancelled!";
 		}
@@ -200,6 +203,7 @@ function addTrail(trail) {
 			if (xhr.status === 200 || xhr.status === 201) {
 				let trail = JSON.parse(xhr.responseText);
 				displayTrail(trail);
+				
 			} else {
 				console.error("Failed to create trail");
 				console.error(xhr.status + " : " + xhr.responseText);
@@ -220,7 +224,6 @@ function createUpdateTrailForm(trailId) {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 200) {
 				let trailJson = xhr.responseText;
-				//console.log(trailJson);  //TESTING 
 				let trail = JSON.parse(trailJson);
 
 
@@ -295,8 +298,6 @@ function updateTrailSubmit(trail) {
 			if (xhr.status === 200 || xhr.status === 201) {
 				let trail = JSON.parse(xhr.responseText);
 				let trailData = document.getElementById('trailData');
-				//TrailData.textContent = '';
-				//getTrail();
 				displayTrail(trail);
 			} else {
 				console.error("Failed to update Trail event");
@@ -310,13 +311,22 @@ function updateTrailSubmit(trail) {
 }
 
 function deleteTrail(trailId) {
+	let createDiv = document.getElementById("createTrailDiv");
+	let updateDiv = document.getElementById("updateTrailDiv");
+	let listDiv = document.getElementById('trailListDiv');
+	let trailDiv = document.getElementById('trailDetailsDiv');
 	let xhr = new XMLHttpRequest();
 	xhr.open('DELETE', `/api/trails/` + trailId);
 
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 204) {
-				getTrail();
+				init();
+				listDiv.style.display = 'block';
+				createDiv.style.display = 'block';
+				trailDiv.style.display = 'none';
+				
+				console.log("should have loadedTrailList")
 			} else {
 				console.error("Failed to delete Trail event");
 				console.error(xhr.status + " : " + xhr.responseText);
@@ -324,6 +334,6 @@ function deleteTrail(trailId) {
 		}
 	}
 	xhr.send();
-
+	
 }
 
