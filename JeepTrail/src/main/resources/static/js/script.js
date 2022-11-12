@@ -18,8 +18,8 @@ function init() {
 			highestElevation: createTrail.highestElevation.value,
 			notes: createTrail.notes.value
 		};
-
 		addTrail(trail);
+		e.target.parentElement.reset();
 	})
 }
 
