@@ -136,9 +136,18 @@ function displayTrail(trail){
 		img.src = trail.imageUrl;
 		trailDiv.appendChild(img);
 		console.log(trail.imageUrl)}
+		
+	let deleteButton = document.createElement('button')	
+	deleteButton.textContent = "Delete this trail";
+	trailDiv.appendChild(deleteButton);
+	deleteButton.addEventListener('click', function(){
+		deleteTrail(trail.id)
+		})
 	
 	createDiv.style.display = 'none';
 	updateDiv.style.display = 'block';
+	
+	updateTrail(trail.id)
 	
 	let backButton = document.createElement('button');
 	backButton.textContent = "Back to List";
@@ -173,3 +182,123 @@ function addTrail(trail)  {
 	let trailJson = JSON.stringify(trail);
 	xhr.send(trailJson);
  }
+ 
+ function updateTrail(trailId) {
+	let xhr = new XMLHttpRequest();
+	xhr.open('GET', '/api/trails/' + trailId);
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			if (xhr.status === 200) {
+				let trailJson = xhr.responseText;
+				console.log(trailJson);  //TESTING 
+				let trail = JSON.parse(trailJson);
+				
+				let trailData = document.getElementById('updateTrailDiv');
+				let form = document.createElement('form');
+				form.name = 'updateTrailForm';
+				trailData.appendChild(form);
+				let name = document.createElement('input');
+				name.name = 'name';
+				name.type = 'text';
+				name.value = trail.name;
+				form.appendChild(name);
+				let length = document.createElement('input');
+				length.name = 'length';
+				length.type = 'number';
+				length.value = trail.length;
+				form.appendChild(length);
+				let dateCompleted = document.createElement('input');
+				dateCompleted.name = 'dateCompleted';
+				dateCompleted.type = 'date';
+				dateCompleted.value = trail.dateCompleted;
+				form.appendChild(dateCompleted);
+				let imageUrl = document.createElement('input');
+				imageUrl.name = 'imageUrl';
+				imageUrl.type = 'text';
+				imageUrl.value = trail.imageUrl;
+				form.appendChild(imageUrl);
+				let highestElevation = document.createElement('input');
+				highestElevation.name = 'highestElevation';
+				highestElevation.type = 'text';
+				highestElevation.value = trail.highestElevation;
+				form.appendChild(highestElevation);
+				let notes = document.createElement('input');
+				notes.name = 'notes';
+				notes.type = 'text';
+				notes.value = trail.notes;
+				form.appendChild(notes);
+
+				let submit = document.createElement('input');
+				submit.name = 'submit';
+				submit.type = 'submit';
+				submit.value = 'Update Trail';
+				submit.addEventListener('click', function(e) {
+					e.preventDefault();
+					let newTrail = {
+						id: trailId,
+						name: name.value,
+						length: length.value,
+						dateCompleted: dateCompleted.value,
+						imageUrl: imageUrl.value,
+						highestElevation: highestElevation.value,
+						notes: notes.value,
+						
+					}
+					updateTrailSubmit(newTrail);
+				})
+				form.appendChild(submit);
+			}
+		}
+	}
+	xhr.send();
+
+}
+
+function updateTrailSubmit(trail) {
+	let xhr = new XMLHttpRequest();
+	xhr.open('PUT', `/api/trails/` + trail.id);
+
+	xhr.setRequestHeader("Content-type", "application/json");
+
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			if (xhr.status === 200 || xhr.status === 201) {
+				let trail = JSON.parse(xhr.responseText);
+				let trailData = document.getElementById('trailData');
+				TrailData.textContent = '';
+				getTrail();
+			} else {
+				console.error("Failed to update Trail event");
+				console.error(xhr.status + " : " + xhr.responseText);
+			}
+		}
+	}
+	let trailJson = JSON.stringify(trail);
+	xhr.send(trailJson);
+
+}
+
+function deleteTrail(trailId){
+	let xhr = new XMLHttpRequest();
+	xhr.open('DELETE', `/api/trails/` + trailId);
+
+	xhr.setRequestHeader("Content-type", "application/json");
+
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			if (xhr.status === 200 || xhr.status === 201 || xhr.status === 204) {
+				let trail = JSON.parse(xhr.responseText);
+				let trailData = document.getElementById('trailData');
+				TrailData.textContent = '';
+				getTrail();
+			} else {
+				console.error("Failed to update Trail event");
+				console.error(xhr.status + " : " + xhr.responseText);
+			}
+		}
+		}
+	let trailJson = JSON.stringify(trail);
+	xhr.send(trailJson);
+
+}
+
