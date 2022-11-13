@@ -161,6 +161,7 @@ function displayTrail(trail) {
 
 	let deleteButton = document.createElement('button')
 	deleteButton.textContent = "Delete this trail";
+	deleteButton.className="btn btn-info";
 	trailDiv.appendChild(deleteButton);
 	deleteButton.addEventListener('click', function() {
 
@@ -177,6 +178,7 @@ function displayTrail(trail) {
 
 	let updateButton = document.createElement('button')
 	updateButton.textContent = "Update this trail";
+	updateButton.className="btn btn-info";
 	trailDiv.appendChild(updateButton);
 	updateButton.addEventListener('click', function() {
 		updateDiv.style.display = 'block';
@@ -186,6 +188,7 @@ function displayTrail(trail) {
 
 	let backButton = document.createElement('button');
 	backButton.textContent = "Back to List";
+	backButton.className="btn btn-info";
 	trailDiv.appendChild(backButton);
 	backButton.addEventListener('click', function() {
 		listDiv.style.display = 'block';

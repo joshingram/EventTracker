@@ -1,7 +1,7 @@
 # Event Tracker Project
 
 ## Description:
-This is a backend only for an application that allows a user to track each trip/trail they take with their 4x4 vehicle.  Users can:
+This is an application that allows a user to track each trip/trail they take with their 4x4 vehicle.  Users can:
 - view lists of all trails
 - view a specific trail
 - create a trail
@@ -13,7 +13,7 @@ Information about a trail event includes:
 - trail's name
 - trail's length
 - highest elevation seen
-- coordinates for the trailhead
+- coordinates for the trailhead (currently not displayed in frontend)
 - an image (url)  
 
 Of note, there is currently no reason that this could not be used for other trail types/uses such as mountain bikers, hikers, trail runners, and/or horseback riders.
@@ -49,12 +49,18 @@ This being my first REST project, I learned about `@RestController` and `@PutMap
 - Instead of using a DAO and DAOImplementation, I used a Repository class with a Service and ServiceImplementation.  
 - Spring Data gives the Repository class several "built-in" queries such as "show," "create," and "delete."
 
+This is also my first JavaScript project, so I learned a lot about manipulating the DOM vs showing a jsp or html page for different views.
+- I used `.style.display = 'none'` to hide an element from the DOM and `.style.display = 'block'` to display an element in the DOM.  
+- In order to refresh the DOM with new data (updated trail or new trail info), I called the function which displayed that information from within an `eventListener`.
+
 ### What I Might Do Differently:
-As stated, this is a backend only application.  In the future, I'd like to add a frontend.  I specifically included the trailhead lat/long for the potential to integrate the Google Maps API.   
+I specifically included the trailhead lat/long for the potential to integrate the Google Maps API.   
+
+Changing the DOM views with display = none and display = block, got to be repetitive and difficult to track.  I might refactor by adding a function "setDomView(viewName)" that used a switch to control the visibility of all elements based on the viewName passed to the function.  
 
 ## Technology Used:
 ### Applications:
-MySQL Workbench, Spring, Spring Boot, Spring Data, JUnit, JSON, REST, Postman, JPA, Spring Tools Suite, Chrome, git/gitHub, Atom, Unix Terminal, Slack, Zoom
+MySQL Workbench, Spring, Spring Boot, Spring Data, JUnit, JSON, REST, CSS, Bootstrap, Postman, JPA, Spring Tools Suite, Chrome, git/gitHub, Atom, Unix Terminal, Slack, Zoom
 
 ### Languages:
-Java, MySQL
+Java, MySQL, JavaScript, HTML

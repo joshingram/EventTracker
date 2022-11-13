@@ -21,4 +21,9 @@ h1 {
 	height: auto;
 }
 
+.btn{
+	margin-right:8px;
+	 background-color: #00e6e6;
+	color : black;
+}
 
