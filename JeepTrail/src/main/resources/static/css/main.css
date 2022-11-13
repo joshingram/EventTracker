@@ -2,7 +2,18 @@
 
 body {
 	 /* color : orange; */
-	 background-image: url("https://img.freepik.com/free-vector/banner-template-with-topography-contour-design_1048-12174.jpg?w=1480&t=st=1668275638~exp=1668276238~hmac=8348c8002c3c685be178811b5a995728305443b7a4d553ca37037b4619faf243");
+	/*  background-image: url("https://img.freepik.com/free-vector/banner-template-with-topography-contour-design_1048-12174.jpg?w=1480&t=st=1668275638~exp=1668276238~hmac=8348c8002c3c685be178811b5a995728305443b7a4d553ca37037b4619faf243"); */
+	 
+	 
+	 background-image: url("https://img.freepik.com/free-vector/digital-landscape-with-techno-wireframe-design_1048-12304.jpg?w=740&t=st=1668378007~exp=1668378607~hmac=c747d4d51624f7b31be5f546efc76230b958d3ad2eb55ea794e93e7ae4175748");
+	background-color: #00264d;
+	background-repeat: no-repeat;
+  background-size: cover;
+  color : #00e6e6;
+}
+
+h1 {
+	font-family: Copperplate, Papyrus, fantasy;
 }
 
 #trailImage {

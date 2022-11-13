@@ -61,8 +61,10 @@ function displayTrailList(trails) {
 	}
 	let aggDiv = document.getElementById("aggregator")
 	aggDiv.textContent = "";
-	let totalD = document.createElement('h2');
-	totalD.textContent = "Total trail miles: " + totalDist;
+	let br = document.createElement('br');
+	aggDiv.appendChild(br);
+	let totalD = document.createElement('h4');
+	totalD.textContent = "Your total trail miles: " + totalDist;
 	aggDiv.appendChild(totalD);
 
 
@@ -151,6 +153,8 @@ function displayTrail(trail) {
 		img.src = trail.imageUrl;
 		trailDiv.appendChild(img);
 	}
+	let br = document.createElement('br');
+	trailDiv.appendChild(br);
 
 	createDiv.style.display = 'none';
 	updateDiv.style.display = 'none';
