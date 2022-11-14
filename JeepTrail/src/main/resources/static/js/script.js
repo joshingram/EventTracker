@@ -227,7 +227,7 @@ function createUpdateTrailForm(trailId) {
 	let trailData = document.getElementById('updateTrailDiv');
 	trailData.textContent = '';
 	let xhr = new XMLHttpRequest();
-	xhr.open('GET', '/api/trails/' + trailId);
+	xhr.open('GET', 'api/trails/' + trailId);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 200) {
@@ -297,7 +297,7 @@ function createUpdateTrailForm(trailId) {
 
 function updateTrailSubmit(trail) {
 	let xhr = new XMLHttpRequest();
-	xhr.open('PUT', `/api/trails/` + trail.id);
+	xhr.open('PUT', `api/trails/` + trail.id);
 
 	xhr.setRequestHeader("Content-type", "application/json");
 
@@ -324,7 +324,7 @@ function deleteTrail(trailId) {
 	let listDiv = document.getElementById('trailListDiv');
 	let trailDiv = document.getElementById('trailDetailsDiv');
 	let xhr = new XMLHttpRequest();
-	xhr.open('DELETE', `/api/trails/` + trailId);
+	xhr.open('DELETE', `api/trails/` + trailId);
 
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
