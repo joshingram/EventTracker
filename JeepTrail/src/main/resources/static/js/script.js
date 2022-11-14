@@ -132,7 +132,7 @@ function displayTrail(trail) {
 	trailDiv.appendChild(h4);
 
 	h4 = document.createElement('h4');
-	h4.textContent = "Length: " + trail.length;
+	h4.textContent = "Length: " + trail.length + " miles";
 	trailDiv.appendChild(h4);
 
 	h4 = document.createElement('h4');
@@ -140,7 +140,7 @@ function displayTrail(trail) {
 	trailDiv.appendChild(h4);
 
 	h4 = document.createElement('h4');
-	h4.textContent = "Highest Elevation: " + trail.highestElevation;
+	h4.textContent = "Highest Elevation: " + trail.highestElevation + " feet";
 	trailDiv.appendChild(h4);
 
 	h4 = document.createElement('h4');
@@ -284,9 +284,7 @@ function createUpdateTrailForm(trailId) {
 						highestElevation: highestElevation.value,
 						notes: notes.value,
 					}
-					console.log(notes.value)
 					updateTrailSubmit(newTrail);
-					console.log(newTrail)
 				})
 				form.appendChild(submit);
 			}
