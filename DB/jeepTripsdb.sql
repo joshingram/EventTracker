@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `trail` (
   `entrance_latitude` DOUBLE NULL,
   `entrance_longitude` DOUBLE NULL,
   `highest_elevation` DOUBLE NULL,
-  `notes` TEXT NULL,
+  `notes` VARCHAR(2000) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -49,9 +49,9 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `jeepTripsdb`;
-INSERT INTO `trail` (`id`, `name`, `length`, `date_completed`, `image_url`, `entrance_latitude`, `entrance_longitude`, `highest_elevation`, `notes`) VALUES (1, 'Rubicon Trail', 22, '2022-08-01', 'http://www.jeepingoffroad.com/_Media/9009ec5b-f112-422e-bc9a_med_hr.jpeg', 39.0033583333333333, -120.31158166666667, 7050, 'Took two days.  Unrelenting.  Large rocks, water and river crossings.  Lots of scrapes.  ');
+INSERT INTO `trail` (`id`, `name`, `length`, `date_completed`, `image_url`, `entrance_latitude`, `entrance_longitude`, `highest_elevation`, `notes`) VALUES (1, 'Rubicon Trail', 22, '2022-08-02', 'http://www.jeepingoffroad.com/_Media/9009ec5b-f112-422e-bc9a_med_hr.jpeg', 39.0033583333333333, -120.31158166666667, 7050, 'Took two days.  Unrelenting.  Large rocks, water and river crossings.  Lots of scrapes.  ');
 INSERT INTO `trail` (`id`, `name`, `length`, `date_completed`, `image_url`, `entrance_latitude`, `entrance_longitude`, `highest_elevation`, `notes`) VALUES (2, 'Holy Cross City', 4.4, '2022-08-20', 'http://www.jeepingoffroad.com/_Media/img_3582_med.jpeg', 39.40321779441507, -106.44359583101377, 11500, 'Water and river crossings, used winch once. ');
-INSERT INTO `trail` (`id`, `name`, `length`, `date_completed`, `image_url`, `entrance_latitude`, `entrance_longitude`, `highest_elevation`, `notes`) VALUES (3, 'Red Cone', 6, '2021-08-01', 'https://wildatv.com/wp-content/uploads/2020/09/Webster-Pass-Red-Cone-696x393.jpg', 39.48339458331419, -105.80385489509197, 12800, 'Steep descent, great views.  One way only from the top of Red Cone. ');
+INSERT INTO `trail` (`id`, `name`, `length`, `date_completed`, `image_url`, `entrance_latitude`, `entrance_longitude`, `highest_elevation`, `notes`) VALUES (3, 'Red Cone', 6, '2021-08-01', 'https://wildatv.com/wp-content/uploads/2020/09/Webster-Pass-Red-Cone-696x393.jpg', 39.48339458331419, -105.80385489509197, 12800, 'Steep descent, great views.   Descent from Red Cone is oneway traffic only.');
 
 COMMIT;
 

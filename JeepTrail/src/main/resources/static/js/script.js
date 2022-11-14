@@ -283,9 +283,10 @@ function createUpdateTrailForm(trailId) {
 						imageUrl: imageUrl.value,
 						highestElevation: highestElevation.value,
 						notes: notes.value,
-
 					}
+					console.log(notes.value)
 					updateTrailSubmit(newTrail);
+					console.log(newTrail)
 				})
 				form.appendChild(submit);
 			}
@@ -320,7 +321,7 @@ function updateTrailSubmit(trail) {
 
 function deleteTrail(trailId) {
 	let createDiv = document.getElementById("createTrailDiv");
-	let updateDiv = document.getElementById("updateTrailDiv");
+//	let updateDiv = document.getElementById("updateTrailDiv");
 	let listDiv = document.getElementById('trailListDiv');
 	let trailDiv = document.getElementById('trailDetailsDiv');
 	let xhr = new XMLHttpRequest();

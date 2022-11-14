@@ -48,6 +48,7 @@ public class TrailServiceImpl implements TrailService {
 			managed.setEntranceLatitude(trail.getEntranceLatitude());
 			managed.setEntranceLongitude(trail.getEntranceLongitude());
 			managed.setHighestElevation(trail.getHighestElevation());
+			managed.setNotes(trail.getNotes());
 
 			return trailRepo.save(managed);
 		}
