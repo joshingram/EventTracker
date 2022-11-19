@@ -1,0 +1,59 @@
+<h1>Trail Tracker</h1>
+<div *ngIf="!selected">
+ <table class="table table-striped table-dark table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th>Trail Id</th>
+      <th>Name</th>
+      <th>Completed</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let trail of trails">
+      <td (click)="displayTrail(trail)">{{ trail.id }}</td>
+      <td (click)="displayTrail(trail)">{{ trail.name}}</td>
+      <td>{{trail.dateCompleted }}</td>
+      <td><button class="btn btn-danger" (click)="deleteTrail(trail.id)">X</button></td>
+    </tr>
+  </tbody>
+</table>
+<h3>Add a recently completed trail:</h3>
+<form name="newTrail" *ngIf="newTrail">
+  <label>Name</label><input type="text" name="task" [(ngModel)]="newTrail.name" required=true/> <br>
+  <label>Length (mi)</label><input type="number" name="length" [(ngModel)]="newTrail.length" /><br>
+  <label>Date Completed</label><input type="date" name="dateCompleted" [(ngModel)]="newTrail.dateCompleted" /><br>
+  <label>ImageUrl</label><input type="text" name="imgUrl" [(ngModel)]="newTrail.imageUrl" /><br>
+  <label>Highest Elevation (ft)</label><input type="number" name="highestElevation" [(ngModel)]="newTrail.highestElevation" /><br>
+  <label>Notes</label><input type="text" name="notes" [(ngModel)]="newTrail.notes" /><br>
+
+
+  <button class="btn btn-primary" (click)="addTrail(newTrail)">Add Trail</button>
+</form>
+</div>
+
+<div id="trailEdit" *ngIf="editTrail">
+  <form>
+    <label>Name</label><input type="text" name="task" [(ngModel)]="editTrail.name" required=true/> <br>
+  <label>Length (mi)</label><input type="number" name="length" [(ngModel)]="editTrail.length" /><br>
+  <label>Date Completed</label><input type="date" name="dateCompleted" [(ngModel)]="editTrail.dateCompleted" /><br>
+  <label>ImageUrl</label><input type="text" name="imgUrl" [(ngModel)]="editTrail.imageUrl" /><br>
+  <label>Highest Elevation (ft)</label><input type="number" name="highestElevation" [(ngModel)]="editTrail.highestElevation" /><br>
+  <label>Notes</label><input type="text" name="notes" [(ngModel)]="editTrail.notes" /><br>
+    <button class="btn btn-danger" (click)="editTrail = null">Cancel</button>
+    <button class="btn btn-success" (click)="updateTrail(editTrail.id, editTrail)">Save</button>
+  </form>
+</div>
+
+<div id="trailDetails" *ngIf="selected && ! editTrail">
+
+  <h1>{{ selected.name }}</h1>
+  <h5>Trail Id# {{ selected.id }}</h5>
+  <p>{{ selected.notes }}</p>
+  <p>Completed: {{ selected.dateCompleted }}</p>
+  <p>Length: {{selected.length}} miles,  Highest elevation: {{selected.highestElevation}} feet</p>
+  <img src="{{selected.imageUrl}}">
+
+  <button class="btn btn-outline-danger" (click)="displayTable()">Back</button>
+  <button class="btn btn-outline-primary" (click)="setEditTrail()">Edit</button>
+</div>
