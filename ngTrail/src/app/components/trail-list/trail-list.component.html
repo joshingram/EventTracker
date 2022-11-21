@@ -18,6 +18,7 @@
     </tr>
   </tbody>
 </table>
+<h3>Current trail miles: {{ totalMiles }}</h3>
 <h3>Add a recently completed trail:</h3>
 <form name="newTrail" *ngIf="newTrail">
   <label>Name</label><input type="text" name="task" [(ngModel)]="newTrail.name" required=true/> <br>

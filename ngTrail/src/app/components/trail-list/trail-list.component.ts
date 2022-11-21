@@ -15,6 +15,7 @@ export class TrailListComponent implements OnInit {
      this.reload()
   }
 trails: Trail[] = [];
+totalMiles: number = 0;
 
 selected: Trail | null = null;
 newTrail: Trail | null = new Trail();
@@ -32,12 +33,25 @@ reload(){
   this.trailService.index().subscribe({
     next: (data) => {
       this.trails = data;
+      this.currentMiles(this.trails);
     },
     error: (fail) => {
       console.error('TrailListComponent.reload: error getting trails');
       console.error(fail);
     }
   });
+}
+
+currentMiles(trails: Trail []): number{
+  let miles: number = 0;
+  this.totalMiles = 0;
+  console.log("trails in currentMiles method" + trails)
+  for (let trail of trails){
+    miles = trail.length;
+    this.totalMiles += miles;
+  }
+  console.log(this.totalMiles)
+  return this.totalMiles;
 }
 
 addTrail(trail: Trail) {

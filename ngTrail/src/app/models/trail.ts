@@ -1,7 +1,7 @@
 export class Trail {
 id: number;
 name: string;
-length: number | undefined;
+length: number;
 dateCompleted: string | null;
 imageUrl: string | undefined;
 entranceLatitude: number | undefined;
@@ -9,7 +9,7 @@ entranceLongitude: number | undefined;
 highestElevation: number | undefined;
 notes: string | undefined;
 
-constructor(id: number = 0, name: string ='', length?: number, dateCompleted: string = '',
+constructor(id: number = 0, name: string ='', length: number = 0, dateCompleted: string = '',
   imageUrl?: string, entranceLatitude?: number, entranceLongitude?: number,
   highestElevation?: number, notes?: string){
 this.id = id;
