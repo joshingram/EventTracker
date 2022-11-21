@@ -52,7 +52,7 @@ This being my first REST project, I learned about `@RestController` and `@PutMap
 - Instead of using a DAO and DAOImplementation, I used a Repository class with a Service and ServiceImplementation.  
 - Spring Data gives the Repository class several "built-in" queries such as "show," "create," and "delete."
 
-~~JS HAS BEEN REPLACED WITH ANGULAR...This is also my first JavaScript project, so I learned a lot about manipulating the DOM vs showing a jsp or html page for different views.~~
+JS HAS BEEN REPLACED WITH ANGULAR ~~This is also my first JavaScript project, so I learned a lot about manipulating the DOM vs showing a jsp or html page for different views.~~
 - ~~I used `.style.display = 'none'` to hide an element from the DOM and `.style.display = 'block'` to display an element in the DOM.~~  
 - ~~In order to refresh the DOM with new data (updated trail or new trail info), I called the function which displayed that information from within an `eventListener`.~~
 
@@ -64,7 +64,7 @@ I specifically included the trailhead lat/long for the potential to integrate th
 
 The REST endpoints for sorting and searching are not currently accessible from the  Angular frontend, I might implement these in a future version.  
 
-~~JS HAS BEEN REPLACED WITH ANGULAR...Changing the DOM views with display = none and display = block, got to be repetitive and difficult to track.  I might refactor by adding a function "setDomView(viewName)" that used a switch to control the visibility of all elements based on the viewName passed to the function.~~  
+JS HAS BEEN REPLACED WITH ANGULAR ~~Changing the DOM views with display = none and display = block, got to be repetitive and difficult to track.  I might refactor by adding a function "setDomView(viewName)" that used a switch to control the visibility of all elements based on the viewName passed to the function.~~  
 
 ## Technology Used:
 ### Applications:
