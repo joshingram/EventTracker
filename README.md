@@ -52,9 +52,9 @@ This being my first REST project, I learned about `@RestController` and `@PutMap
 - Instead of using a DAO and DAOImplementation, I used a Repository class with a Service and ServiceImplementation.  
 - Spring Data gives the Repository class several "built-in" queries such as "show," "create," and "delete."
 
-~~JS HAS BEEN REPLACED WITH ANGULAR...This is also my first JavaScript project, so I learned a lot about manipulating the DOM vs showing a jsp or html page for different views.
-- I used `.style.display = 'none'` to hide an element from the DOM and `.style.display = 'block'` to display an element in the DOM.  
-- In order to refresh the DOM with new data (updated trail or new trail info), I called the function which displayed that information from within an `eventListener`.~~
+~~JS HAS BEEN REPLACED WITH ANGULAR...This is also my first JavaScript project, so I learned a lot about manipulating the DOM vs showing a jsp or html page for different views.~~
+- ~~I used `.style.display = 'none'` to hide an element from the DOM and `.style.display = 'block'` to display an element in the DOM.~~  
+- ~~In order to refresh the DOM with new data (updated trail or new trail info), I called the function which displayed that information from within an `eventListener`.~~
 
 This was my first angular project.  I learned about using VS code, using `app.module.ts` to set imports and declarations, `app.component.html` to set `router.outlet`, and `app-routing.module` to specify routes (paths to components).  I also learned about Angular models to represent Java classes, and using components with `.html` and `.ts` files to create views and which gather database information from (by subscribing to) a `service.ts` file.  These `service.ts` files access the database via REST endpoints.  
 
